@@ -110,7 +110,7 @@
                 $("#gifs-appear-here").prepend(animalDiv);
 
                 $(".gif").on("click", function() {
-                  console.log($(this).attr("data-state"))
+                  console.log($(this));
                   // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
                   
                   if ($(this).attr("data-state") === "still") {
@@ -154,12 +154,7 @@
 
       // Calling the renderButtons function at least once to display the initial list of animals
       renderButtons();
-      
-      
-
-      // adding API to pull information on clicked button. 
-
-     
+    
 
     </script>
   </div>
