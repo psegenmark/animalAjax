@@ -54,7 +54,7 @@
           // Adding a data-attribute with a value of the movie at index i
           a.attr("data-name", animals[i]);
           // Adding data-attribute to be still image:
-          a.attr("data-state", "still"); 
+          
           // Providing the button's text with a value of the movie at index i
           a.text(animals[i]);
           // Adding the button to the HTML
@@ -96,14 +96,36 @@
                 var animalImage = $("<img>");
                 // Setting the src attribute of the image to a property pulled off the result item
               
-                animalImage.attr("src", results[i].images.fixed_width_still.url);
+                animalImage.attr("src", results[i].images.fixed_width_still.url)
+                .attr("data-state", "still")
+                .attr("class","gif")
+                .attr("data-still", results[i].images.fixed_width_still.url)
+                .attr("data-animate", results[i].images.fixed_width.url)
               
                 // Appending the paragraph and image tag to the animalDiv
                 animalDiv.append(p);
                 animalDiv.append(animalImage);
+
                 // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
                 $("#gifs-appear-here").prepend(animalDiv);
+
+                $(".gif").on("click", function() {
+                  console.log($(this).attr("data-state"))
+                  // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+                  
+                  if ($(this).attr("data-state") === "still") {
+               
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                  } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                  }
+                  });
                 
+                 
+    
+               
               }
               
             });
